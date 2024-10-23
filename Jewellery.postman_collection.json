@@ -1,0 +1,1278 @@
+{
+	"info": {
+		"_postman_id": "b99c437a-b1b0-4f4e-8646-665ce56a1091",
+		"name": "Jewellery",
+		"description": "# ⛓️ Get started here\n\nPostman allows you to test your APIs using simple Javascript code. You can evaluate your response body, headers, cookies, and more using the [ChaiJS BDD](https://www.chaijs.com/api/bdd/) syntax.\n\nThis template guides you through the process of setting up an integration test to ensure that all individual components of an API function together seamlessly.\n\nThe API under test in this collection includes three endpoints for registering and receiving a token, accessing your unique generated name, and unregistering a token:\n\n- POST `/register`\n- POST `/unregister`\n- GET `/my-name`\n    \n\nBy setting up requests in the order of the operation, we can test the flow of data to and from the endpoints and ensure they work together as expected. We also verify that the data persists between requests on the back end.\n\n## 🔖 **How to use this template**\n\n**Step 1:** Check out the requests' documentation to learn more about -\n\n- what each request is meant to do.\n- the tests we've added against each one.\n    \n\n**Step 2:** Run this collection by clicking on \"Run\".\n\n<img src=\"https://content.pstmn.io/84019b0f-69c8-4c5f-98b9-2c90a6f9a0b1/Y29sbGVjdGlvbi1ydW5uZXItYnV0dG9uLmpwZWc=\" alt=\"\" height=\"103\" width=\"266\">\n\n**Step 3:** To customize this template, replace the request URLs with your API endpoints and add or edit the tests if needed.\n\n## ℹ️ Resources\n\n[Scripting in Postman](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/)\n\n[Test script examples](https://learning.postman.com/docs/writing-scripts/script-references/test-examples/)\n\n[Postman Sandbox API reference](https://learning.postman.com/docs/sending-requests/grpc/postman-sandbox-api/#writing-assertions)\n\n[Using the Collection Runner](https://learning.postman.com/docs/collections/running-collections/intro-to-collection-runs/)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28902239"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin1@email.com\",\r\n    \"firstname\": \"Firstname\",\r\n    \"lastname\": \"Lastname\",\r\n    \"mobile\": \"7950004665\",\r\n    \"password\": \"password\",\r\n    \"role\": \"admin\",\r\n    \"address\":\"noida\",\r\n    \"zipcode\":\"12131\",\r\n    \"caste\":\"sikh\",\r\n    \"relgion\":\"hindu\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/user/register/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"register",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@email.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDM4Mjg3ZWYyMTBmNTIzZjNjYjFjMCIsImlhdCI6MTcyODI4NDAxOSwiZXhwIjoxNzI4NTQzMjE5fQ.frtFIw_Y1_-59T7JaIT36mgWjMSmo6LwlHXXcAZEpGQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstname\": \"John\",\r\n  \"lastname\": \"Doe\",\r\n  \"email\": \"update@email.com\",\r\n  \"mobile\": \"1234567890\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/user/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDRkMjViMDg5YzcyMGZjMjUzN2Y2YyIsImlhdCI6MTcyODM2OTI1NCwiZXhwIjoxNzI4NjI4NDU0fQ.sRxzWS-3OQ-E-soG1fM7jbIhseitHfU68J5yd8tKtk8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/user/delete/6704d206089c720fc2537f68",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"delete",
+								"6704d206089c720fc2537f68"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "3hkphn05ndy",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/user/getalluser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"getalluser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/user//getuser/67038c7f7e586fb319921e03",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"",
+								"getuser",
+								"67038c7f7e586fb319921e03"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restore User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDRkMjViMDg5YzcyMGZjMjUzN2Y2YyIsImlhdCI6MTcyODM2OTI1NCwiZXhwIjoxNzI4NjI4NDU0fQ.sRxzWS-3OQ-E-soG1fM7jbIhseitHfU68J5yd8tKtk8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/user/restore/6704d206089c720fc2537f68",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"restore",
+								"6704d206089c720fc2537f68"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Block User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDRkMjViMDg5YzcyMGZjMjUzN2Y2YyIsImlhdCI6MTcyODM2OTI1NCwiZXhwIjoxNzI4NjI4NDU0fQ.sRxzWS-3OQ-E-soG1fM7jbIhseitHfU68J5yd8tKtk8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/user/block/6704d1e3089c720fc2537f5a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"block",
+								"6704d1e3089c720fc2537f5a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unblock User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDRkMjViMDg5YzcyMGZjMjUzN2Y2YyIsImlhdCI6MTcyODM2OTI1NCwiZXhwIjoxNzI4NjI4NDU0fQ.sRxzWS-3OQ-E-soG1fM7jbIhseitHfU68J5yd8tKtk8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/user/unblock/6704d1e3089c720fc2537f5a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"unblock",
+								"6704d1e3089c720fc2537f5a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDRkMjViMDg5YzcyMGZjMjUzN2Y2YyIsImlhdCI6MTcyODUzNzA5OSwiZXhwIjoxNzI4Nzk2Mjk5fQ.rQRude07vY-lMLM4DMdGeq0ijCjs4fUNqX-_m6uKZQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Maang Tika",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Tika Jewellery offers a stunning collection of handcrafted, contemporary pieces that blend traditional craftsmanship with modern design, perfect for celebrating special occasions.",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "13000",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "Tika",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "14",
+									"type": "text"
+								},
+								{
+									"key": "pictures",
+									"type": "file",
+									"src": [
+										"/C:/Users/Sanjeev/Downloads/TIka-3.jpg",
+										"/C:/Users/Sanjeev/Downloads/Tika-2.jpg",
+										"/C:/Users/Sanjeev/Downloads/Tika-1.webp",
+										"/C:/Users/Sanjeev/Downloads/Tika.jpg"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/user/admin/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"admin",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "ljwhjfao7qc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/user/product/getall",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"product",
+								"getall"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/user/product/get/6703cfbdb282414881db0b81",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"product",
+								"get",
+								"6703cfbdb282414881db0b81"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDM4MjU4ZWYyMTBmNTIzZjNjYjFiYiIsImlhdCI6MTcyODI4NjgzNSwiZXhwIjoxNzI4NTQ2MDM1fQ.3z02HCZWylF1ZACGnCQXUyGzCZG7mrdohKK3CL7hAmk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/product/delete/6703bd0b6e217b5dbffc683c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"product",
+								"delete",
+								"6703bd0b6e217b5dbffc683c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDM4MjU4ZWYyMTBmNTIzZjNjYjFiYiIsImlhdCI6MTcyODI4NjgzNSwiZXhwIjoxNzI4NTQ2MDM1fQ.3z02HCZWylF1ZACGnCQXUyGzCZG7mrdohKK3CL7hAmk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Tika Update",
+									"type": "text"
+								},
+								{
+									"key": "pictures",
+									"type": "file",
+									"src": [
+										"/C:/Users/Sanjeev/Downloads/TIka-3.jpg",
+										"/C:/Users/Sanjeev/Downloads/TIka-3.jpg",
+										"/C:/Users/Sanjeev/Downloads/Tika-2.jpg",
+										"/C:/Users/Sanjeev/Downloads/Tika-1.webp",
+										"/C:/Users/Sanjeev/Downloads/Tika.jpg"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/product/update/6703b64efd42adc34affca13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"product",
+								"update",
+								"6703b64efd42adc34affca13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product by Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/user/product/category/Earrings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"product",
+								"category",
+								"Earrings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Rating",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDRkMWUzMDg5YzcyMGZjMjUzN2Y1YSIsImlhdCI6MTcyODM4MzU0NiwiZXhwIjoxNzI4NjQyNzQ2fQ.ceo1c2pTh5mfC1SUAm0cIoQ9PNBbhv7GlQQ357VDLpc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"star\": 5,\r\n    \"comment\": \"Great product!\",\r\n    \"productId\": \"670508f4a85efacff20fd22e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/user/product/rate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"product",
+								"rate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDM4MjU4ZWYyMTBmNTIzZjNjYjFiYiIsImlhdCI6MTcyODI4NjgzNSwiZXhwIjoxNzI4NTQ2MDM1fQ.3z02HCZWylF1ZACGnCQXUyGzCZG7mrdohKK3CL7hAmk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/user/admin/delete/6703b64efd42adc34affca13/image/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"admin",
+								"delete",
+								"6703b64efd42adc34affca13",
+								"image",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Most Selling Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/user/most-selling",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"most-selling"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Top Rated Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/user/product/toprated",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"product",
+								"toprated"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Popular Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/user/product/popular/67076fa892801d63af38611e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"product",
+								"popular",
+								"67076fa892801d63af38611e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Popular Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/user/product/getpopularproduct",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"product",
+								"getpopularproduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Total Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDRkMjViMDg5YzcyMGZjMjUzN2Y2YyIsImlhdCI6MTcyODM5MTY4NiwiZXhwIjoxNzI4NjUwODg2fQ.iaAxG5Lpgxz34yJuI-KROBbwDVsL6q5IzcDdTf3nis0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/user/admin/getdata",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"admin",
+								"getdata"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Recent Views",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDRkMWUzMDg5YzcyMGZjMjUzN2Y1YSIsImlhdCI6MTcyODQ1MTEzNywiZXhwIjoxNzI4NzEwMzM3fQ.zROH825NJsTISS1xGSzzdHTZ8MknYZnPr41iAbSGPwc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/user/recent-views/get",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"recent-views",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recently Views",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDRkMWUzMDg5YzcyMGZjMjUzN2Y1YSIsImlhdCI6MTcyODQ1MTEzNywiZXhwIjoxNzI4NzEwMzM3fQ.zROH825NJsTISS1xGSzzdHTZ8MknYZnPr41iAbSGPwc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\": \"6703cfbdb282414881db0b87\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/user/recent-view/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"recent-view",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Offers",
+			"item": [
+				{
+					"name": "Create Offers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDRkMjViMDg5YzcyMGZjMjUzN2Y2YyIsImlhdCI6MTcyODQ1MzIzNCwiZXhwIjoxNzI4NzEyNDM0fQ.ub7y6lTcDDtOfsFfRSNNyIa2WBozBT_XVCeDASRviyY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"offer\": \"30% Discount\",\r\n  \"discount\": 30,\r\n  \"discountType\": \"Offers\",\r\n  \"prodCategory\": \"Bracelet\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/user/admin/offers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"admin",
+								"offers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Offers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/user/get/offers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"get",
+								"offers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Offer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/user/offers/67061fbae238c64507fd4d88",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"offers",
+								"67061fbae238c64507fd4d88"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Offer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDRkMjViMDg5YzcyMGZjMjUzN2Y2YyIsImlhdCI6MTcyODUzNzA5OSwiZXhwIjoxNzI4Nzk2Mjk5fQ.rQRude07vY-lMLM4DMdGeq0ijCjs4fUNqX-_m6uKZQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/user/admin/delete/offers/67079b06071032276d93be00",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"admin",
+								"delete",
+								"offers",
+								"67079b06071032276d93be00"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Offer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDRkMjViMDg5YzcyMGZjMjUzN2Y2YyIsImlhdCI6MTcyODQ1MzIzNCwiZXhwIjoxNzI4NzEyNDM0fQ.ub7y6lTcDDtOfsFfRSNNyIa2WBozBT_XVCeDASRviyY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"offer\": \"40% Discount\",\r\n  \"discount\": 40,\r\n  \"discountType\": \"Offers\",\r\n  \"prodCategory\": \"Earrings\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/user/admin/update/offers/67062009e238c64507fd4d8f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"admin",
+								"update",
+								"offers",
+								"67062009e238c64507fd4d8f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apply Offers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDRkMjViMDg5YzcyMGZjMjUzN2Y2YyIsImlhdCI6MTcyODUzNzA5OSwiZXhwIjoxNzI4Nzk2Mjk5fQ.rQRude07vY-lMLM4DMdGeq0ijCjs4fUNqX-_m6uKZQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"offerId\": \"6707878c361bbcc58c1a6ac4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/user/admin/offers/apply",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"admin",
+								"offers",
+								"apply"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Offers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/user/offers/get?category=Bracelet",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"offers",
+								"get"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "Bracelet"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDRkMjViMDg5YzcyMGZjMjUzN2Y2YyIsImlhdCI6MTcyODQ1MzIzNCwiZXhwIjoxNzI4NzEyNDM0fQ.ub7y6lTcDDtOfsFfRSNNyIa2WBozBT_XVCeDASRviyY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"totalAmount\": 855, \"productId\": \"6703cfbdb282414881db0b81\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/user/orders/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"orders",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notification",
+			"item": [
+				{
+					"name": "Send",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDRkMjViMDg5YzcyMGZjMjUzN2Y2YyIsImlhdCI6MTcyODUzNzA5OSwiZXhwIjoxNzI4Nzk2Mjk5fQ.rQRude07vY-lMLM4DMdGeq0ijCjs4fUNqX-_m6uKZQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Important Update\",\r\n  \"message\": \"Our system will be down for maintenance tonight.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/user/send/notification",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"send",
+								"notification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mark Read",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDRkMjViMDg5YzcyMGZjMjUzN2Y2YyIsImlhdCI6MTcyODUzNzA5OSwiZXhwIjoxNzI4Nzk2Mjk5fQ.rQRude07vY-lMLM4DMdGeq0ijCjs4fUNqX-_m6uKZQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/user/notification/markread/67067595768a5e027b2ff86b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"notification",
+								"markread",
+								"67067595768a5e027b2ff86b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Notification",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/user/getallnotification",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"getallnotification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Notification",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/user/getsinglenotification/67078ac2dc4cc50f83a58ea7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"getsinglenotification",
+								"67078ac2dc4cc50f83a58ea7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send Notification to users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDRkMjViMDg5YzcyMGZjMjUzN2Y2YyIsImlhdCI6MTcyODUzNzA5OSwiZXhwIjoxNzI4Nzk2Mjk5fQ.rQRude07vY-lMLM4DMdGeq0ijCjs4fUNqX-_m6uKZQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userIds\": [\"6704d1e3089c720fc2537f5a\", \"6704d1f5089c720fc2537f60\"],\r\n    \"title\": \"Important Update\",\r\n    \"message\": \"This is a notification message for selected users.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/user/admin/send/notification/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"admin",
+								"send",
+								"notification",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "baseUrl",
+			"value": "https://postman-integration-testing.glitch.me/"
+		}
+	]
+}
